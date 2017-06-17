@@ -1,0 +1,19 @@
+@extends('template.main')
+@section('biglist')
+<table>
+    <thead>
+        <tr>
+            <th>Titolo</th>
+            <th>Autore</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach($mieilibri as $ml)
+        <tr>
+            <td>{{$ml['descrizione']}}</td>
+            <td>{{$ml->autore->nome}}</td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+    @endsection
