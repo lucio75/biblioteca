@@ -12,4 +12,11 @@ class Autori extends Model
     {
         return $this->hasMany('App\Models\Libri','autore_id');
     }
+
+    protected $morphClass='Autori';
+
+    public function generi()
+    {
+        return $this->morphMany('App\Models\Genere','generable');
+    }
 }

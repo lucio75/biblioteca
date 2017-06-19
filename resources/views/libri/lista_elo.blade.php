@@ -7,4 +7,6 @@
             </li>
         @endforeach
     </ul>
-    @endsection
+
+    {{$lista->render()}}
+@endsection

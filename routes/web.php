@@ -59,3 +59,45 @@ Route::get('bigList','AutoriController@bigList');
 Route::get('libriinprestito','LibriController@inPrestito');
 
 Route::get('utenticheleggono','LibriController@quantiMiLeggono');
+
+Route::get('LibriPoly',function(){
+   $libri=App\Models\Libri::with('autore')->get();
+
+    foreach($libri->generi as $gen){
+        echo $libri->nome .'['.$gen->nome_genere.']';
+    }
+});
+
+Route::get('AutoriPoly',function(){
+    $autori=App\Models\Autori::find(2);
+
+    foreach($autori->generi as $gen){
+        echo $autori->nome .'['.$gen->nome_genere.']';
+    }
+});
+
+Route::get('/metodospedizione',['
+    middleware'=>'carrellopieno',function(){
+    return'Pagina Metodo spedizione';
+}]);
+
+Route::get('/listalibri','LibriController@index');
+
+Route::get('listaeloquent','LibriController@eloquentLibri');
+
+Route::get('/salva_dati_in_cache',function (){
+   $scadenza=\Carbon\carbon::now()->addMinute(10);
+    \Cache::put('nome','Lucio',$scadenza);
+    return 'dati salvati';
+});
+
+Route::get('/recupera_dati_in_cache',function(){
+   if(\Cache::has('nome'))
+   {
+
+   }return Cache::get('nome');
+});
+
+Route::get('/se_non_ci_sono_recupera',function(){
+
+});

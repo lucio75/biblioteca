@@ -11,7 +11,7 @@ class AutoriTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Autori::class,10)->create()->each(function($u){
+        factory(App\Models\Autori::class,30)->create()->each(function($u){
            $u->Libri()->save(factory(App\Models\Libri::class)->make());
         });
     }

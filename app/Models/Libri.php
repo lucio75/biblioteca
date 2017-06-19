@@ -8,10 +8,14 @@ class Libri extends Model
 {
     protected $table='libri';
 
-    public function autore(){
-        return $this->belongsTo('App\Models\Autori','autore_id');
+    public function lista()
+    {
+        return \DB::table('libri')->simplePaginate(3);
     }
-    public function miLeggono(){
-        return $this->belongsToMany('App\Utenti','prestiti','libro_id','utente_id');
+
+    public function listaEloquent()
+    {
+        return \App\Models\Libri::where('id','>',3)->paginate(15);
     }
+
 }
